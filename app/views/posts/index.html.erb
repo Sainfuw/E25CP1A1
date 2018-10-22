@@ -1,15 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>New Post</h1> 
-<%= form_with model: @post, local: true, id: "newPost" do |form| %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-  <div class="actions">
-    <%= form.submit "Create Post", id: "boton" %>
-  </div>
-<% end %>
+<%= render 'form', post: @post %>
 
 <br><br><h1>Posts</h1>
 <p>Buscar:</p>
@@ -17,11 +9,12 @@
   <input type="text" name="buscar">
 </form><br><br>
 
-<table id="postList">
+<table class="table" id="postList">
   <thead>
     <tr>
+      <th>Photo</th>
       <th>Title</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -30,25 +23,6 @@
 </table>
 
 <script>
-  $("#boton").click(function(e){
-    var newPost = $("#newPost");
-    $.ajax({
-        url: newPost.action,
-        type: 'POST',
-        dataType: 'script',
-        data: newPost.serialize()
-    });
-    e.preventDefault();
-  });
-  $(".eliminar").click(function(e){
-    $.ajax({
-        url: $(this).attr('href'),
-        type: 'POST',
-        dataType: 'script',
-        data: {"_method":"delete"}
-    });
-    e.preventDefault();
-  });
   $("[name=buscar]").keypress(function(e) {
     $.ajax({
       url: '<%= posts_path %>',

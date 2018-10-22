@@ -1,6 +1,14 @@
 <tr id='<%= post.id %>'>
+  <td><%= image_tag post.photo.to_s %></td>
   <td><%= post.title %></td>
-  <td><%= link_to 'Show', post %></td>
-  <td><%= link_to 'Edit', edit_post_path(post) %></td>
-  <td><%= link_to 'Destroy', post, class: "eliminar" %></td>
+  <td>
+    <%= link_to 'Show', post, class: "btn btn-primary btn-sm" %>
+    <%= link_to 'Edit', edit_post_path(post), remote: true, data: { toggle: "modal", target: '#modal-window' }, class: 'btn btn-primary btn-sm' %>
+    <%= link_to 'Destroy', post, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: "eliminar btn btn-primary btn-sm" %>
+  </td>
 </tr>
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>

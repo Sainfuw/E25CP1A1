@@ -1,0 +1,3 @@
+$("#<%= @post.id %>").remove();
+$('#postList tbody').append('<%= j render @post %>');
+$('#modal-window').modal('hide');
