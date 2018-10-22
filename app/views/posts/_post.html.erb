@@ -1,0 +1,6 @@
+<tr id='<%= post.id %>'>
+  <td><%= post.title %></td>
+  <td><%= link_to 'Show', post %></td>
+  <td><%= link_to 'Edit', edit_post_path(post) %></td>
+  <td><%= link_to 'Destroy', post, class: "eliminar" %></td>
+</tr>
